@@ -2,15 +2,15 @@
 
 This MongoDB Docker container is intended to be used to set up a 3 node replica set.
 
-Mongo version:  **3.4.0**
+Mongo version:  **3.6.0**
 
 ## About
 
-A MongoDB [replica set](https://docs.mongodb.org/v3.4/replication/) consists of at least 3 Mongo instances. In this case, they will be a primary, secondary, and an arbiter. To use this project as a replica set, you simply launch three instances of this container across three separate host servers and the primary will configure your users and replica set.  Also note that each server must be able to access the others (discovery must work in both directions).
+A MongoDB [replica set](https://docs.mongodb.org/v3.6/replication/) consists of at least 3 Mongo instances. In this case, they will be a primary, secondary, and an arbiter. To use this project as a replica set, you simply launch three instances of this container across three separate host servers and the primary will configure your users and replica set.  Also note that each server must be able to access the others (discovery must work in both directions).
 
 ## Setup
 
-You will need to create your own custom build of this image to generate a unique [keyfile](https://docs.mongodb.com/v3.4/tutorial/enforce-keyfile-access-control-in-existing-replica-set/) that Mongo uses for [internal authentication](https://docs.mongodb.org/v3.4/tutorial/enable-internal-authentication/) between replica set members. Each of your replica set members needs to have the same key, so be sure to use the same image in each location. Once using your build in production do NOT publish your Docker image to a public repo because it will container your private key.
+You will need to create your own custom build of this image to generate a unique [keyfile](https://docs.mongodb.com/v3.6/tutorial/enforce-keyfile-access-control-in-existing-replica-set/) that Mongo uses for [internal authentication](https://docs.mongodb.org/v3.6/tutorial/enable-internal-authentication/) between replica set members. Each of your replica set members needs to have the same key, so be sure to use the same image in each location. Once using your build in production do NOT publish your Docker image to a public repo because it will container your private key.
 
 #### Build
 
@@ -30,7 +30,7 @@ docker run -d -p 27017:27017 yourname/mongo-rep-set:latest
 
 #### Arbiter
 
-The only difference here is you can turn off journaling. From the [official docs](https://docs.mongodb.org/v3.4/tutorial/add-replica-set-arbiter/#considerations):
+The only difference here is you can turn off journaling. From the [official docs](https://docs.mongodb.org/v3.6/tutorial/add-replica-set-arbiter/#considerations):
 > An arbiter does not store data, but until the arbiter’s mongod process is added to the replica set, the arbiter will act like any other mongod process and start up with a set of data files and with a full-sized journal. To minimize the default creation of data, you can disable journaling.
 
 ```sh

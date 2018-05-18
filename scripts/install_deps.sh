@@ -23,7 +23,7 @@ gosu nobody true
 
 
 # generate a key file for the replica set
-# https://docs.mongodb.com/v3.4/tutorial/enforce-keyfile-access-control-in-existing-replica-set
+# https://docs.mongodb.com/v3.6/tutorial/enforce-keyfile-access-control-in-existing-replica-set
 printf "\n[-] Generating a replica set keyfile...\n\n"
 openssl rand -base64 741 > $MONGO_KEYFILE
 chown mongodb:mongodb $MONGO_KEYFILE
